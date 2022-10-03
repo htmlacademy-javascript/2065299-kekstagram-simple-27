@@ -13,12 +13,18 @@ getRandomIntInclusive (5,567);
 
 // Функция для проверки максимальной длины строки
 
-function checkstringLength () {
-  const comment = document.querySelector('text__description');
-  const stringLength = comment.length;
-  const MIN_STRING_LENGTH = 20;
-  const MAX_STRING_LENGTH = 140;
-  return stringLength >= MIN_STRING_LENGTH && stringLength <= MAX_STRING_LENGTH;
+function checkstringLength (stringLength, minStringLength, maxStringLength) {
+  return stringLength >= minStringLength && stringLength <= maxStringLength;
 }
 
-checkstringLength();
+checkstringLength(36, 20, 140);
+
+// function checkstringLength () {
+//   const comment = document.querySelector('text__description');
+//   const stringLength = comment.length;
+//   const MIN_STRING_LENGTH = 20;
+//   const MAX_STRING_LENGTH = 140;
+//   return stringLength >= MIN_STRING_LENGTH && stringLength <= MAX_STRING_LENGTH;
+// }
+
+// checkstringLength();
