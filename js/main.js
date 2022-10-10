@@ -52,7 +52,7 @@ const DESCRIPTION = [
   'Я у мамы молодец!',
 ];
 
-const createPublishedPost = (index) => ({
+const createPost = (index) => ({
   id: index,
   url: `photos/${index}.jpg`,
   description: getRandomArrayElement(DESCRIPTION),
@@ -61,5 +61,5 @@ const createPublishedPost = (index) => ({
 }
 );
 
-const similarPublishedPost = () => Array.from({length: POSTS_COUNT}, (_, postIndex) => createPublishedPost(postIndex + 1));
-similarPublishedPost();
+const PublishedPosts = () => Array.from({length: POSTS_COUNT}, (_, postIndex) => createPost(postIndex + 1));
+PublishedPosts();
