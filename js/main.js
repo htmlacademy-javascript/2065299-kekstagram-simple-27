@@ -3,7 +3,10 @@
 const getRandomIntInclusive = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return (min < 0 || max < 0 || max <= min) ? NaN : Math.floor(Math.random() * (max - min + 1)) + min;
+  if (min < 0 || max < 0 || max <= min) {
+    return NaN;
+  }
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 getRandomIntInclusive(5,567);
@@ -52,14 +55,14 @@ const DESCRIPTION = [
   'Я у мамы молодец!',
 ];
 
-const createPost = (index) => ({
-  id: index,
-  url: `photos/${index}.jpg`,
+const photoData = (id) => ({
+  id: id,
+  url: `photos/${id}.jpg`,
   description: getRandomArrayElement(DESCRIPTION),
   likes: getRandomIntInclusive(LIKES_COUNT.MIN, LIKES_COUNT.MAX),
   comments: getRandomIntInclusive(COMMENTS_COUNT.MIN, COMMENTS_COUNT.MAX),
 }
 );
 
-const PublishedPosts = () => Array.from({length: POSTS_COUNT}, (_, postIndex) => createPost(postIndex + 1));
-PublishedPosts();
+const photoFeed = () => Array.from({length: POSTS_COUNT}, (_, postIndex) => photoData(postIndex + 1));
+photoFeed();
