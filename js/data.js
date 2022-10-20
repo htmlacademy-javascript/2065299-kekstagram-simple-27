@@ -46,6 +46,7 @@ const photoData = (id) => ({
   comments: getRandomIntInclusive(COMMENTS_COUNT.MIN, COMMENTS_COUNT.MAX),
 }
 );
+const {url, likes, comments} = photoData;
 
 const createPhotoFeed = () => Array.from({length: POSTS_COUNT}, (_, postIndex) => photoData(postIndex + 1));
 
