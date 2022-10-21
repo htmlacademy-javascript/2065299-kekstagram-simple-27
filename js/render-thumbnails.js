@@ -16,4 +16,4 @@ const renderThumbnails = () => {
   pictures.appendChild(randomThumbnailsFragment);
 };
 
-export {renderThumbnails};
+renderThumbnails();

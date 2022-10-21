@@ -1,5 +1,1 @@
-import { createPhotoFeed } from './data.js';
-import {renderThumbnails} from './render-thumbnails.js';
-
-createPhotoFeed();
-renderThumbnails();
+import './render-thumbnails.js';
