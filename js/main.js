@@ -1,4 +1,5 @@
 import { createPhotoFeed } from './data.js';
-import './render-thumbnails.js';
+import {renderThumbnails} from './render-thumbnails.js';
 
 createPhotoFeed();
+renderThumbnails();
