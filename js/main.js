@@ -1,3 +1,5 @@
+import {renderThumbnails} from './render-thumbnails.js';
 import { createPhotoFeed } from './data.js';
 
-createPhotoFeed();
+const randomThumbnails = createPhotoFeed();
+renderThumbnails(randomThumbnails);
