@@ -18,4 +18,8 @@ const getRandomArrayElement = (elements) => elements[getRandomIntInclusive(0, el
 const checkStringLength = (stringLength, maxStringLength) => stringLength <= maxStringLength;
 checkStringLength(36, 140);
 
-export {getRandomIntInclusive, getRandomArrayElement};
+// Функция проверки нажатой клавиши Esc
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomIntInclusive, getRandomArrayElement, isEscapeKey};
