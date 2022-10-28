@@ -1,27 +1,22 @@
 import {isEscapeKey} from './util.js';
 
-const uploadFileInput = document.querySelector('#upload-file');
 const body = document.querySelector('body');
-const imgEditor = document.querySelector('.img-upload__overlay');
-const uploadCloseButton = document.querySelector('#upload-cancel');
-const commentText = document.querySelector('.text__description');
 const imgEditForm = document.querySelector('.img-upload__form');
+const uploadFileInput = imgEditForm.querySelector('#upload-file');
+const imgEditor = imgEditForm.querySelector('.img-upload__overlay');
+const uploadCloseButton = imgEditForm.querySelector('#upload-cancel');
+const commentText = imgEditForm.querySelector('.text__description');
 
-function onImgEditorEscKeydown(evt) {
+
+const onImgEditorEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     imgEditor.classList.add('hidden');
     body.classList.remove('modal-open');
   }
-}
+};
 
-function openImgEditor() {
-  imgEditor.classList.remove('hidden');
-  body.classList.add('modal-open');
-  document.addEventListener('keydown', onImgEditorEscKeydown);
-}
-
-function closeImgEditor() {
+const closeImgEditor = () => {
   imgEditor.classList.add('hidden');
   body.classList.remove('modal-open');
   // document.querySelector('.scale__control--value').value = 100; как масштаб задать 100% при закрытии?
@@ -29,15 +24,23 @@ function closeImgEditor() {
   commentText.value = '';
   uploadFileInput.value = '';
   document.removeEventListener('keydown', onImgEditorEscKeydown);
-}
+  uploadCloseButton.removeEventListener('click', closeImgEditor);
+};
+
+const openImgEditor = () => {
+  imgEditor.classList.remove('hidden');
+  body.classList.add('modal-open');
+  document.addEventListener('keydown', onImgEditorEscKeydown);
+  uploadCloseButton.addEventListener('click', closeImgEditor);
+};
 
 uploadFileInput.addEventListener('change', openImgEditor);
-uploadCloseButton.addEventListener('click', closeImgEditor);
+
 
 const validateComment = new Pristine(imgEditForm, {
   classTo: 'text__label',
   errorTextParent: 'text__label',
-  errorTextClass: 'text__description--error-text',
+  errorTextClass: 'text__description--error',
 },
 true
 );
