@@ -34,17 +34,17 @@ function closeImgEditor() {
 uploadFileInput.addEventListener('change', openImgEditor);
 uploadCloseButton.addEventListener('click', closeImgEditor);
 
-// const validateComment = new Pristine(imgEditForm, {
-//   classTo: 'text__label',
-//   errorTextParent: 'text__label',
-//   errorTextClass: 'text__error-text',
-// });
+const validateComment = new Pristine(imgEditForm, {
+  classTo: 'text__label',
+  errorTextParent: 'text__label',
+  errorTextClass: 'text__description--error-text',
+},
+true
+);
 
-// imgEditForm.addEventListener('submit', (evt) => {
-//   const isValid = validateComment.validate();
-//   if (!isValid) {
-//     evt.preventDefault();
-//   }
-// });
-
-// validateComment();
+imgEditForm.addEventListener('submit', (evt) => {
+  const isValid = validateComment.validate();
+  if (!isValid) {
+    evt.preventDefault();
+  }
+});
