@@ -19,7 +19,7 @@ const onImgEditorEscKeydown = (evt) => {
 const closeImgEditor = () => {
   imgEditor.classList.add('hidden');
   body.classList.remove('modal-open');
-  // document.querySelector('.scale__control--value').value = 100; как масштаб задать 100% при закрытии?
+  document.querySelector('.scale__control--value').value = '100%';
   document.querySelector('#effect-none').checked = true;
   commentText.value = '';
   uploadFileInput.value = '';
