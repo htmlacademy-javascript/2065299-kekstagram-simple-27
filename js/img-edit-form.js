@@ -11,12 +11,11 @@ const commentText = imgEditForm.querySelector('.text__description');
 const onImgEditorEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    imgEditor.classList.add('hidden');
-    body.classList.remove('modal-open');
+    closeImgEditor();
   }
 };
 
-const closeImgEditor = () => {
+function closeImgEditor() {
   imgEditor.classList.add('hidden');
   body.classList.remove('modal-open');
   document.querySelector('.scale__control--value').value = '100%';
@@ -25,7 +24,7 @@ const closeImgEditor = () => {
   uploadFileInput.value = '';
   document.removeEventListener('keydown', onImgEditorEscKeydown);
   uploadCloseButton.removeEventListener('click', closeImgEditor);
-};
+}
 
 const openImgEditor = () => {
   imgEditor.classList.remove('hidden');
@@ -37,7 +36,7 @@ const openImgEditor = () => {
 uploadFileInput.addEventListener('change', openImgEditor);
 
 
-const validateComment = new Pristine(imgEditForm, {
+const validator = new Pristine(imgEditForm, {
   classTo: 'text__label',
   errorTextParent: 'text__label',
   errorTextClass: 'text__description--error',
@@ -46,7 +45,7 @@ true
 );
 
 imgEditForm.addEventListener('submit', (evt) => {
-  const isValid = validateComment.validate();
+  const isValid = validator.validate();
   if (!isValid) {
     evt.preventDefault();
   }
