@@ -8,15 +8,7 @@ const imgEditor = imgEditForm.querySelector('.img-upload__overlay');
 const uploadCloseButton = imgEditForm.querySelector('#upload-cancel');
 const commentText = imgEditForm.querySelector('.text__description');
 
-
-const onImgEditorEscKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeImgEditor();
-  }
-};
-
-function closeImgEditor() {
+const onUploadCloseButtonClick = () => {
   imgEditor.classList.add('hidden');
   body.classList.remove('modal-open');
   resetScale();
@@ -24,17 +16,24 @@ function closeImgEditor() {
   commentText.value = '';
   uploadFileInput.value = '';
   document.removeEventListener('keydown', onImgEditorEscKeydown);
-  uploadCloseButton.removeEventListener('click', closeImgEditor);
-}
+  uploadCloseButton.removeEventListener('click', onUploadCloseButtonClick);
+};
 
-const openImgEditor = () => {
+const onUploadFileInputChange = () => {
   imgEditor.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onImgEditorEscKeydown);
-  uploadCloseButton.addEventListener('click', closeImgEditor);
+  uploadCloseButton.addEventListener('click', onUploadCloseButtonClick);
 };
 
-uploadFileInput.addEventListener('change', openImgEditor);
+function onImgEditorEscKeydown(evt) {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    onUploadCloseButtonClick();
+  }
+}
+
+uploadFileInput.addEventListener('change', onUploadFileInputChange);
 
 
 const validator = new Pristine(imgEditForm, {
