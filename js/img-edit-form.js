@@ -1,4 +1,5 @@
 import {isEscapeKey} from './util.js';
+import {resetScale} from './change-scale.js';
 
 const body = document.querySelector('body');
 const imgEditForm = document.querySelector('.img-upload__form');
@@ -18,7 +19,7 @@ const onImgEditorEscKeydown = (evt) => {
 function closeImgEditor() {
   imgEditor.classList.add('hidden');
   body.classList.remove('modal-open');
-  document.querySelector('.scale__control--value').value = '100%';
+  resetScale();
   document.querySelector('#effect-none').checked = true;
   commentText.value = '';
   uploadFileInput.value = '';
