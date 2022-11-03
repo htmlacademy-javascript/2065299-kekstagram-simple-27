@@ -1,5 +1,6 @@
-import {isEscapeKey} from './util.js';
-import {resetScale} from './change-scale.js';
+import { isEscapeKey } from './util.js';
+import { resetScale } from './change-scale.js';
+import { resetEffect } from './add-effect.js';
 
 const body = document.querySelector('body');
 const imgEditForm = document.querySelector('.img-upload__form');
@@ -12,6 +13,7 @@ const onUploadCloseButtonClick = () => {
   imgEditor.classList.add('hidden');
   body.classList.remove('modal-open');
   resetScale();
+  resetEffect();
   document.querySelector('#effect-none').checked = true;
   commentText.value = '';
   uploadFileInput.value = '';
