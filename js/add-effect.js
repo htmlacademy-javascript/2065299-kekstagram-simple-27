@@ -3,15 +3,14 @@ const imgPreview = document.querySelector('.img-upload__preview');
 const sliderElement = document.querySelector('.effect-level__slider');
 const effectLevel = document.querySelector('.effect-level__value');
 
-
-const EFFECTS = [
-  {
+const EFFECTS = {
+  none: {
     name: 'none',
     min: 0,
     max: 100,
     step: 1,
   },
-  {
+  chrome: {
     name: 'chrome',
     style: 'grayscale',
     min: 0,
@@ -19,7 +18,7 @@ const EFFECTS = [
     step: 0.1,
     unit: '',
   },
-  {
+  sepia: {
     name: 'sepia',
     style: 'sepia',
     min: 0,
@@ -27,7 +26,7 @@ const EFFECTS = [
     step: 0.1,
     unit: '',
   },
-  {
+  marvin: {
     name: 'marvin',
     style: 'invert',
     min: 0,
@@ -35,7 +34,7 @@ const EFFECTS = [
     step: 1,
     unit: '%',
   },
-  {
+  phobos: {
     name: 'phobos',
     style: 'blur',
     min: 0,
@@ -43,20 +42,19 @@ const EFFECTS = [
     step: 0.1,
     unit: 'px',
   },
-  {
+  heat: {
     name: 'heat',
     style: 'brightness',
     min: 1,
     max: 3,
     step: 0.1,
     unit: '',
-  }
-];
+  },
+};
 
-const DEFAULT_EFFECT = EFFECTS[0];
+const DEFAULT_EFFECT = EFFECTS['none'];
 let choosenEffect = DEFAULT_EFFECT;
 const isDefault = () => choosenEffect === DEFAULT_EFFECT;
-
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -86,7 +84,7 @@ const updateSlider = () => {
 
 const onEffectChange = (evt) => {
   imgPreview.classList.remove(`effects__preview--${choosenEffect.name}`);
-  choosenEffect = EFFECTS.find((effect) => effect.name === evt.target.value);
+  choosenEffect = EFFECTS[(evt.target.value)];
   imgPreview.classList.add(`effects__preview--${choosenEffect.name}`);
   updateSlider();
 };
@@ -107,9 +105,7 @@ const resetEffect = () => {
   updateSlider();
 };
 
-updateSlider();
-
 effectsList.addEventListener('change', onEffectChange);
 sliderElement.noUiSlider.on('update', onSliderUpdate);
 
-export { resetEffect };
+export { resetEffect, updateSlider };
