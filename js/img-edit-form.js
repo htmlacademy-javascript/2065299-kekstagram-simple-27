@@ -52,5 +52,3 @@ imgEditForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
   }
 });
-
-export { validator };
