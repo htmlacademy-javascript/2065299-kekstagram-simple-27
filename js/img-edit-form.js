@@ -35,7 +35,7 @@ function onImgEditorEscKeydown(evt) {
   }
 }
 
-uploadFileInput.addEventListener('change', onUploadFileInputChange);
+const loadImg = () => uploadFileInput.addEventListener('change', onUploadFileInputChange);
 
 
 const validator = new Pristine(imgEditForm, {
@@ -52,3 +52,5 @@ imgEditForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
   }
 });
+
+export{ loadImg };
