@@ -1,4 +1,6 @@
-import {isEscapeKey} from './util.js';
+import { isEscapeKey } from './util.js';
+import { resetScale } from './change-scale.js';
+import { resetEffect } from './add-effect.js';
 
 const body = document.querySelector('body');
 const imgEditForm = document.querySelector('.img-upload__form');
@@ -7,33 +9,33 @@ const imgEditor = imgEditForm.querySelector('.img-upload__overlay');
 const uploadCloseButton = imgEditForm.querySelector('#upload-cancel');
 const commentText = imgEditForm.querySelector('.text__description');
 
-
-const onImgEditorEscKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeImgEditor();
-  }
-};
-
-function closeImgEditor() {
+const onUploadCloseButtonClick = () => {
   imgEditor.classList.add('hidden');
   body.classList.remove('modal-open');
-  document.querySelector('.scale__control--value').value = '100%';
+  resetScale();
+  resetEffect();
   document.querySelector('#effect-none').checked = true;
   commentText.value = '';
   uploadFileInput.value = '';
   document.removeEventListener('keydown', onImgEditorEscKeydown);
-  uploadCloseButton.removeEventListener('click', closeImgEditor);
-}
+  uploadCloseButton.removeEventListener('click', onUploadCloseButtonClick);
+};
 
-const openImgEditor = () => {
+const onUploadFileInputChange = () => {
   imgEditor.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onImgEditorEscKeydown);
-  uploadCloseButton.addEventListener('click', closeImgEditor);
+  uploadCloseButton.addEventListener('click', onUploadCloseButtonClick);
 };
 
-uploadFileInput.addEventListener('change', openImgEditor);
+function onImgEditorEscKeydown(evt) {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    onUploadCloseButtonClick();
+  }
+}
+
+const loadImg = () => uploadFileInput.addEventListener('change', onUploadFileInputChange);
 
 
 const validator = new Pristine(imgEditForm, {
@@ -50,3 +52,5 @@ imgEditForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
   }
 });
+
+export{ loadImg };
