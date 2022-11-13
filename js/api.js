@@ -1,7 +1,7 @@
 import { enableSubmitButton } from './img-edit-form.js';
 
 const apiUrls = {
-  POST: 'https://27.javascript.paes.acaemy/kekstagram-simple',
+  POST: 'https://27.javascript.pages.academy/kekstagram-simple',
   GET: 'https://27.javascript.pages.academy/kekstagram-simple/data',
 };
 
