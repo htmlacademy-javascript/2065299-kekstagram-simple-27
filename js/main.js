@@ -1,9 +1,16 @@
 import { renderThumbnails } from './render-thumbnails.js';
-import { createPhotoFeed } from './data.js';
-import { loadImg } from './img-edit-form.js';
+import { showGetDataErrorModal } from './util.js';
+import { setImgEditFormSubmit, closeImgEditForm } from './img-edit-form.js';
 import { updateSlider } from'./add-effect.js';
+import { showSuccessMessage, showErrorMessage } from './messages.js';
+import { getData } from './api.js';
 
-const randomThumbnails = createPhotoFeed();
-renderThumbnails(randomThumbnails);
-loadImg();
+getData(renderThumbnails, showGetDataErrorModal);
 updateSlider();
+
+const onSendSuccessData = () => {
+  closeImgEditForm();
+  showSuccessMessage();
+};
+setImgEditFormSubmit(onSendSuccessData, showErrorMessage);
+
