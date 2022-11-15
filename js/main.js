@@ -13,4 +13,3 @@ const onSendSuccessData = () => {
   showSuccessMessage();
 };
 setImgEditFormSubmit(onSendSuccessData, showErrorMessage);
-
