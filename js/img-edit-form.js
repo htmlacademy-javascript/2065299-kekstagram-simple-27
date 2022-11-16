@@ -70,4 +70,4 @@ const setImgEditFormSubmit = (onSuccess, onError) => {
   });
 };
 
-export{ setImgEditFormSubmit, closeImgEditForm, enableSubmitButton };
+export{ setImgEditFormSubmit, closeImgEditForm, enableSubmitButton, onImgEditorEscKeydown };
