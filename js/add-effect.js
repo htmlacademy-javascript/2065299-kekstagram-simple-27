@@ -1,5 +1,5 @@
 const effectsList = document.querySelector('.effects__list');
-const imgPreview = document.querySelector('.img-upload__preview');
+const imgPreview = document.querySelector('.img-upload__preview').querySelector('img');
 const sliderElement = document.querySelector('.effect-level__slider');
 const effectLevel = document.querySelector('.effect-level__value');
 

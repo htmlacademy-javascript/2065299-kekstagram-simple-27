@@ -16,18 +16,19 @@ const closeImgEditForm = () => {
   body.classList.remove('modal-open');
   resetScale();
   resetEffect();
+  resetError();
   document.querySelector('#effect-none').checked = true;
   commentText.value = '';
   uploadFileInput.value = '';
   document.removeEventListener('keydown', onImgEditorEscKeydown);
-  uploadCloseButton.removeEventListener('click', closeImgEditForm);
+  uploadCloseButton.removeEventListener('click', onUploadCloseButtonClick);
 };
 
 const onUploadFileInputChange = () => {
   imgEditor.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onImgEditorEscKeydown);
-  uploadCloseButton.addEventListener('click', closeImgEditForm);
+  uploadCloseButton.addEventListener('click', onUploadCloseButtonClick);
 };
 
 function onImgEditorEscKeydown(evt) {
@@ -35,6 +36,10 @@ function onImgEditorEscKeydown(evt) {
     evt.preventDefault();
     closeImgEditForm();
   }
+}
+
+function onUploadCloseButtonClick() {
+  closeImgEditForm();
 }
 
 uploadFileInput.addEventListener('change', onUploadFileInputChange);
@@ -46,6 +51,10 @@ const validator = new Pristine(imgEditForm, {
 },
 true
 );
+
+function resetError() {
+  validator.reset();
+}
 
 const disableSubmitButton = () => {
   submitButton.disabled = true;
@@ -70,4 +79,4 @@ const setImgEditFormSubmit = (onSuccess, onError) => {
   });
 };
 
-export{ setImgEditFormSubmit, closeImgEditForm, enableSubmitButton };
+export{ setImgEditFormSubmit, closeImgEditForm, enableSubmitButton, onImgEditorEscKeydown };

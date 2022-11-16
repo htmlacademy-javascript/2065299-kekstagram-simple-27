@@ -6,7 +6,7 @@ const DEFAULT_SCALE = 100;
 const smallerButton = document.querySelector('.scale__control--smaller');
 const biggerButton = document.querySelector('.scale__control--bigger');
 const scaleInput = document.querySelector('.scale__control--value');
-const imgPreview = document.querySelector('.img-upload__preview');
+const imgPreview = document.querySelector('.img-upload__preview').querySelector('img');
 
 const сhangeScale = (scaleValue) => {
   imgPreview.style.transform = `scale(${scaleValue / 100})`;

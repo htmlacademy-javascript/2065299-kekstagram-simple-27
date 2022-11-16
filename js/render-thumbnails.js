@@ -4,7 +4,7 @@ const pictures = document.querySelector('.pictures');
 
 const renderThumbnails = (posts) => {
   posts.forEach(({url, likes, comments}) => {
-    const thumbnailElement = thumbnailTemplate.cloneNode('true');
+    const thumbnailElement = thumbnailTemplate.cloneNode(true);
     thumbnailElement.querySelector('.picture__img').src = url;
     thumbnailElement.querySelector('.picture__likes').textContent = likes;
     thumbnailElement.querySelector('.picture__comments').textContent = comments;
