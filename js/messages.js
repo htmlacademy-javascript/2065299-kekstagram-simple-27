@@ -12,7 +12,6 @@ const showSuccessMessage = () => {
   const successModal = uploadSuccessElement.querySelector('.success__inner');
   closeSuccessButton = uploadSuccessElement.querySelector('.success__button');
   body.appendChild(uploadSuccessElement);
-  body.style.overflow = 'hidden';
   document.removeEventListener('keydown', onImgEditorEscKeydown);
 
   const onSuccessOverlayClick = (evt) => {
@@ -53,7 +52,6 @@ const showErrorMessage = () => {
   const errorModal = uploadErrorElement.querySelector('.error__inner');
   closeErrorButton = uploadErrorElement.querySelector('.error__button');
   body.appendChild(uploadErrorElement);
-  body.style.overflow = 'hidden';
   document.removeEventListener('keydown', onImgEditorEscKeydown);
 
   const onErrorOverlayClick = (evt) => {
@@ -90,14 +88,12 @@ const showErrorMessage = () => {
 function hideSuccessMessage() {
   const successMessage = document.querySelector('.success');
   successMessage.remove();
-  body.style.overflow = 'auto';
   document.addEventListener('keydown', onImgEditorEscKeydown);
 }
 
 function hideErrorMessage() {
   const errorMessage = document.querySelector('.error');
   errorMessage.remove();
-  body.style.overflow = 'auto';
   document.addEventListener('keydown', onImgEditorEscKeydown);
 }
 
